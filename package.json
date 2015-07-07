@@ -1,0 +1,31 @@
+{
+  "name": "xp-calculator",
+  "version": "1.0.0",
+  "description": "RPG Experience Calculator for D&D, Pathfinder, etc.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mse2321/quikShopur.git"
+  },
+  "keywords": [
+    "xp",
+    "calculator",
+    "rpg"
+  ],
+  "author": "ME",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mse2321/quikShopur/issues"
+  },
+  "homepage": "https://github.com/mse2321/quikShopur#readme",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "mongodb": "^2.0.35",
+    "mongoose": "^4.0.6"
+  }
+}
