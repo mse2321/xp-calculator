@@ -64,14 +64,14 @@ $(document).ready(function xp_Calculator() {
 		localStorage.setItem('level',level);
 		
 		// Redirect
-		window.location.href="xpCalculator.html";		
+		window.location.href="index.html";		
 		return false;
 	}
 	
 	function clearInfo(){
 		localStorage.clear();
 		alert('Character Information Cleared');
-		window.location.href="xpCalculator.html";
+		window.location.href="index.html";
 	}
 	
 	function presetValues() {
@@ -84,7 +84,7 @@ $(document).ready(function xp_Calculator() {
 		var currentXp = parseInt(localStorage.getItem('xp'));
 		var currentLevel = parseInt(localStorage.getItem('level'));
 		console.log(currentLevel);
-					
+				
 		// Insert into field
 		$('#charName').val(currentName);
 		$('#currXp').val(currentXp);
