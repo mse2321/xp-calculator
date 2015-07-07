@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mse2321/quikShopur.git"
+    "url": "git+https://github.com/mse2321/xp-calcuator.git"
   },
   "keywords": [
     "xp",
@@ -19,9 +19,9 @@
   "author": "ME",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mse2321/quikShopur/issues"
+    "url": "https://github.com/mse2321/xp-calcuator/issues"
   },
-  "homepage": "https://github.com/mse2321/quikShopur#readme",
+  "homepage": "https://github.com/mse2321/xp-calcuator#readme",
   "dependencies": {
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
