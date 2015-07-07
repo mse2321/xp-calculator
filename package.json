@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mse2321/xp-calcuator.git"
+    "url": "git+https://github.com/mse2321/xp-calculator.git"
   },
   "keywords": [
     "xp",
@@ -19,9 +19,9 @@
   "author": "ME",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mse2321/xp-calcuator/issues"
+    "url": "https://github.com/mse2321/xp-calculator/issues"
   },
-  "homepage": "https://github.com/mse2321/xp-calcuator#readme",
+  "homepage": "https://github.com/mse2321/xp-calculator#readme",
   "dependencies": {
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
