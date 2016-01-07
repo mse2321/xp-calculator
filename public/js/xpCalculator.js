@@ -2,25 +2,25 @@ $(document).ready(function xp_Calculator() {
 		//Calculation Handler
 		$('#submit').on('tap', CalculateXp);
 		
-		//Add Info Handler
+		//Add Info to Local Storage Handler
 		$('#submit').on('tap', charInfoStorage);
 		
 		// Clear Handler
 		$('#clearRuns').on('tap', clearInfo);
 		
-		//Load Level Information Handler
+		//Load Level Information Handler. This pulls info to build Character page.
 		$('#char').on('tap', charLevelInfo);
 		
-		//Preset Xp Values Handler
+		//Preset Xp Values Handler. This displays the values themselves.
 		$('#numValues').on('tap', presetValues);
 		
-		// Set Current Handler
+		// Set Current Values Handler
 		$(window).on('load', setCurrent);
 		
-		 //Enable Newly Earned Xp Input Handler
+		 //Enable Newly Earned Xp Input Handler. This activates the Preset XP Values button
 		//$(window).on('load', newInputActive);
 		
-		//Disable Newly Earned Xp Input Handler
+		//Disable Newly Earned Xp Input Handler. This prevents double entry from the Preset Values
 		$(window).on('load', newXpInputDisable2);
 		
 	function CalculateXp() {
@@ -56,12 +56,16 @@ $(document).ready(function xp_Calculator() {
 		xp.push(charInfo2);
 		level.push(charInfo3);
 		
+		console.log('information has been pushed');
+		console.log(charInfo2);
+
 		alert('Character Information Added');
 		
 		// Set stringified object to localStorage
 		localStorage.setItem('name',name);
 		localStorage.setItem('xp',xp);
 		localStorage.setItem('level',level);
+
 		
 		// Redirect
 		window.location.href="index.html";		
@@ -83,12 +87,19 @@ $(document).ready(function xp_Calculator() {
 		var currentName = localStorage.getItem('name');		
 		var currentXp = parseInt(localStorage.getItem('xp'));
 		var currentLevel = parseInt(localStorage.getItem('level'));
+		var levelCheck = isNaN(currentLevel);
+
+		if(levelCheck === true) {
+			var currentLevel = 0;
+		}
+
 		console.log(currentLevel);
-				
+
 		// Insert into field
 		$('#charName').val(currentName);
 		$('#currXp').val(currentXp);
 		$('#charLevel').val(currentLevel);
+
 		
 		charLevelInfo(currentLevel, currentXp, currentName);
 		
@@ -114,8 +125,8 @@ $(document).ready(function xp_Calculator() {
 			var levelProgress = nextXpThreshold - currentXp;
 		}
 		
-		$("#characterName").html("<p><strong>Character Name:</strong> " +currentName+"</p>");
-		$("#characterLevel").html("<p><strong>Character Level:</strong> " +currentLevel+"</p>");
+		$("#characterName").html("<p><strong>Character Name:</strong> " + currentName +"</p>");
+		$("#characterLevel").html("<p><strong>Character Level:</strong> " + currentLevel +"</p>");
 		$("#nextLevelCalc").html("<p>You are " + levelProgress + "xp away from level " + nextLevel + ".</p>");
 	}
 	
