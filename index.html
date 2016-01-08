@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html ng-app="demo" ng-controller="ctrl" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Revyn Tools: XP Calculator</title>
+        <style>
+            body {text-align: center; font-family:Arial, Helvetica, sans-serif;}
+            h1 {color:#903; font-size: 2em;}
+            ul {display: block;}
+            .controls {float: right;}
+            #numValues {height: 30px; width: 100%; vertical-align:middle; padding: 5px;}
+            .hidden {display: none;}
+            .visible {display: block;}
+            #newTotalXp {background: #fff; padding: 10px 0; width: 100%; color: #C30; font-size: 16px;}
+            #nextLevelCalc {margin-top: 20px;}
+            .content {text-align: center; font-size: 1.4em;}
+            select{margin: 0 auto;}
+            h2 {color:#903; text-align:center;}
+            @media (max-width: 640px) {.content {text-align: left;}}
+        </style>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+        <script>
+            var demo = angular.module("demo", []);
+            demo.controller("ctrl", function($scope, $http){
+                $scope.name = "";
+                $scope.level = "";
+                $scope.nextLevel = 0;
+                $scope.lvThreshold = 0;
+                $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
+                $scope.xp = "";
+                $scope.newXp1 = "";
+                $scope.newXp2 = "";
+                $scope.totalXp = 0;
+                $scope.visible = "";
+                $scope.hideElement = function(){
+                    $scope.visible = "";
+                };
+                $scope.showElement = function(){
+                    $scope.visible = "visible";
+                };
+                $scope.submit = function(){
+                    $scope.newXpTotal = Number($scope.newXp1) + Number($scope.newXp2);
+                    $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
+                    $scope.nextLevel = Number($scope.level) + 1;
+                    $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
+                    console.log($scope.nextLevelValue + " - next level value");
+                    $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
+                    $scope.nextLevelCalc = function(){
+                        $scope.lvThreshold = Number($scope.level) - Number($scope.nextLevel);
+                    };
+                    console.log($scope.newXpTotal + " - new xp");
+                    console.log($scope.totalXp + " - total xp");
+                    console.log($scope.neededXp + " - needed xp");
+                    console.log($scope.nextLevel + " - next level");
+                    //$http.put(URL);
+                    $scope.xp = $scope.totalXp;
+                    $scope.newXp = 0;
+                };
+            });
+        </script>
+    </head>
+
+    <body>
+         <div data-role="page" id="home">
+                <header data-role="header" data-theme="a">
+                    <h1>XP Calculator</h1>
+                </header>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-transition="none" data-icon="home">XP</a></li>
+                        <li><a href="#char" data-transition="none" data-icon="plus">Level Information</a></li>
+                    </ul>
+                </div>
+                <div data-role="content">
+                    <h2>{{ name }} {{ visible }}</h2>
+                        <label for="charName">Character Name</label>
+                        <input type="text" id="charName" data-inset="true" ng-model="name">
+                    <label for="charLevel">Character Level</label>
+                    <input type="text" id="charLevel" data-inset="true" ng-model="level">
+                    <label for="currXp">Current XP</label>
+                    <input type="number" id="currXp" data-inset="true" ng-model="xp">
+                    <label for="newXp">Newly Earned XP</label>
+                    <button id="numValues" data-theme="a" ng-click="hideElement()">Hide Preset Values</button>
+                    <button id="numValues" data-theme="b" ng-click="showElement()">Show Preset Values</button>
+                   <div id="hiddenDropDown">
+                    <select name="newXp" id="newXp" data-role="none" ng-model="newXp1" class="hidden {{ visible }}">
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                        <option value="600">600</option>
+                        <option value="700">700</option>
+                        <option value="800">800</option>
+                        <option value="900">900</option>
+                        <option value="1000">1000</option>
+                    </select>
+                    </div>
+                    <input type="number" id="newXp2" data-inset="true" ng-model="newXp2">
+                    <br />
+                    <button type="submit" value="submit" id="submit" ng-click="submit()">Submit</button>
+                    <!--<button id="clearRuns" onClick="return confirm('Are you sure?')" data-theme="b">Clear Totals</button>-->
+                    <br />
+                    <label for="newTotalXp">New Current XP</label>
+                    <div id="newTotalXp">
+                        {{ totalXp }}
+                    </div>
+                    <br />
+                </div>
+            
+                <footer data-role="footer" data-theme="a">
+                    <h4>ME Innovation &copy; 2016</h4>
+                </footer>
+            </div>
+            
+    
+            <div data-role="page" id="char">
+                <header data-role="header" data-theme="b">
+                    <h1>XP Calculator</h1>
+                </header>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-transition="none" data-icon="home">XP</a></li>
+                        <li><a href="#char" data-transition="none" data-icon="plus">Level Information</a></li>
+                    </ul>
+                </div>
+                <div data-role="content" class="content" align="center">
+                    <h2>Level Information</h2>
+                    <div id="characterLevel"><strong>Character Level:</strong> {{ level }}</div>
+                    <div id="nextLevelCalc">You are {{ neededXp }}xp away from level {{ nextLevel }}.</div>
+                </div>
+            
+                <footer data-role="footer" data-theme="a">
+                    <h4>ME Innovation &copy; 2016</h4>
+                </footer>
+            </div>
+        </body>
+    </body>
+</html>
