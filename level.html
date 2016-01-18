@@ -1,23 +1,20 @@
-<!DOCTYPE html>
 <html ng-app="demo" ng-controller="ctrl" lang="en">
     <head>
         <meta charset="utf-8" />
         <title>Revyn Tools: XP Calculator</title>
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
         <style>
-            body {text-align: center; font-family:Arial, Helvetica, sans-serif; background-color: #ffecb3; }
+            body {text-align: center; font-family:Arial, Helvetica, sans-serif;}
             h1 {color:#903; font-size: 2em;}
-            li {list-style-type: none; display: inline-block;}
-            ul {margin: 0 auto;}
+            ul {display: block;}
             .controls {float: right;}
             md-content {background-color: #ffecb3; color: white;}
-            input {color: #3e2723;}
-            md-toolbar.md-default-theme {background-color: #e53935;}
+            md-input-container {color: white;}
             label {text-align: center;}
             #numValues {height: 30px; width: 100%; vertical-align:middle; padding: 5px;}
             .hidden {display: none;}
             .visible {display: block;}
-            #newTotalXp {background: #fff; padding: 10px 0; width: 40%; color: #C30; font-size: 16px; margin: 0 auto;}
+            #newTotalXp {background: #fff; padding: 10px 0; width: 100%; color: #C30; font-size: 16px;}
             #nextLevelCalc {margin-top: 20px;}
             .content {text-align: center; font-size: 1.4em;}
             select{margin: 0 auto;}
@@ -78,70 +75,30 @@
             });
         </script>
     </head>
-
     <body>
-        <md-content>
-            <header data-role="header" data-theme="a">
+
+        <div data-role="page" id="char">
+            <header data-role="header" data-theme="b">
                 <h1>XP Calculator</h1>
             </header>
             <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <ul>
-                        <li><a href="#home" data-transition="none" data-icon="home"><md-button>XP</md-button></a></li>
-                        <li><a href="#char" data-transition="none" data-icon="plus"><md-button>Level Information</md-button></a></li>
-                    </ul>
-                </div>
-            </md-toolbar>
-            <div data-role="content">
-                <md-input-container>
-                    <label for="charName">Character Name</label>
-                    <input type="text" id="charName" ng-model="name">
-                </md-input-container><br />
-                <md-input-container>
-                    <label for="charLevel">Character Level</label>
-                    <input type="text" id="charLevel" ng-model="level">
-                    </md-input-container><br />
-                <md-input-container>
-                    <label for="currXp">Current XP</label>
-                    <input type="number" id="currXp" ng-model="xp">
-                </md-input-container><br />
-                <md-input-container>
-                    <label for="newXp">Newly Earned XP</label><br />
-                    <md-button class="md-raised" id="numValues" data-theme="a" ng-click="hideElement()">Hide Preset Values</md-button>
-                    <md-button class="md-raised md-primary" id="numValues" data-theme="b" ng-click="showElement()">Show Preset Values</md-button>
-                    <div id="hiddenDropDown">
-                        <md-select name="newXp" id="newXp" data-role="none" ng-model="newXp1" class="hidden {{ visible }}">
-                            <md-option value="100">100</md-option>
-                            <md-option value="200">200</md-option>
-                            <md-option value="300">300</md-option>
-                            <md-option value="400">400</md-option>
-                            <md-option value="500">500</md-option>
-                            <md-option value="600">600</md-option>
-                            <md-option value="700">700</md-option>
-                            <md-option value="800">800</md-option>
-                            <md-option value="900">900</md-option>
-                            <md-option value="1000">1000</md-option>
-                        </md-select>
-                    </div>
-                </md-input-container><br />
-                <md-input-container>
-                    <input type="number" id="newXp2" ng-model="newXp2">
-                </md-input-container>
-                <br />
-                <md-button class="md-raised" type="submit" value="submit" id="submit" ng-click="submit()">Submit</md-button>
-                <!--<button id="clearRuns" onClick="return confirm('Are you sure?')" data-theme="b">Clear Totals</button>-->
-                <br />
-                <label for="newTotalXp">New Current XP</label>
-                <div id="newTotalXp">
-                    {{ totalXp }}
-                </div>
-                <br />
-                </div>
-                
-                <footer data-role="footer" data-theme="a">
-                    <h4>ME Innovation &copy; 2016</h4>
-                </footer>
+	            <div class="md-toolbar-tools">
+	                <ul>
+	                    <li><a href="#home" data-transition="none" data-icon="home">XP</a></li>
+	                    <li><a href="#char" data-transition="none" data-icon="plus">Level Information</a></li>
+	                </ul>
+	            </div>
+        	</md-toolbar>
+            <div data-role="content" class="content" align="center">
+                <h2>Level Information</h2>
+                <div id="characterLevel"><strong>Character Level:</strong> {{ level }}</div>
+                <div id="nextLevelCalc">You are {{ neededXp }}xp away from level {{ nextLevel }}.</div>
             </div>
-        </md-content>
+            
+            <footer data-role="footer" data-theme="a">
+                <h4>ME Innovation &copy; 2016</h4>
+            </footer>
+        </div>
+
     </body>
 </html>
