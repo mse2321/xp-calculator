@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
         <style>
             body { text-align: center; font-family: 'Roboto', sans-serif; }
-            h1 { color:#903; font-family: 'Press Start 2P', sans-serif; }
+            h1 { color: #D50000; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; }
             .nav_links { margin-right: 50px; color: white; font-size: 30px; }
             .nav_links a { color: white; }
             nav li { margin-top: 10px; }
@@ -21,7 +21,7 @@
             .content_wrap { z-indxe: 500; }
             .controls { float: right; }
             #numValues { height: 50px; width: 100%; font-size: 16px; vertical-align: middle; }
-            #submit { height: 50px; font-family: 'Roboto', sans-serif; font-weight: 900; font-size: 20px; }
+            #submit { height: 50px; font-family: 'Press Start 2P', sans-serif; font-weight: 900; font-size: 20px; margin-bottom: 20px; padding: 0 20px; }
             .lastButton { margin-bottom: 30px; }
             .hidden { display: none; }
             .visible { display: block; }
@@ -31,8 +31,10 @@
             select{ margin: 0 auto 10px auto; }
             h2 { color:#903; text-align:center; }
             /* angular material styles */
-            md-content { background-color: #f9f9f9; }
+            .md-primary { color: white; }
+            md-content { background-color: #f9f9f9; width: 600px; margin: 40px auto; padding: 35px; border: 4px solid #D50000; }
             md-input-container { padding: 0; right: 0; }
+            .md-button { background-color: #1565C0; }
             @media (max-width: 640px) { .content { text-align: left; } }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -127,8 +129,8 @@
                         <input type="number" id="currXp" data-inset="true" ng-model="xp">
                     </md-input-container>
                     <label for="newXp">Newly Earned XP</label>
-                    <button id="numValues" data-theme="a" ng-click="hideElement()">Hide Preset Values</button>
-                    <button id="numValues" class="lastButton" data-theme="b" ng-click="showElement()">Show Preset Values</button>
+                    <md-button id="numValues" class="md-primary"  data-theme="a" ng-click="hideElement()">Hide Preset Values</md-button>
+                    <md-button id="numValues" class="lastButton" data-theme="b" ng-click="showElement()">Show Preset Values</md-button>
                     <div id="hiddenDropDown">
                         <select name="newXp" id="newXp" data-role="none" ng-model="newXp1" class="hidden {{ visible }}">
                             <option value="100">100</option>
@@ -146,7 +148,7 @@
                     <md-input-container class="md-block">
                         <input type="number" id="newXp2" data-inset="true" ng-model="newXp2" placeholder="Type here for specific values">
                     </md-input-container>
-                    <button type="submit" value="submit" id="submit" ng-click="submit()">Submit</button>
+                    <button type="submit" value="submit" id="submit" ng-click="submit()">Compute</button>
                     <!--<button id="clearRuns" onClick="return confirm('Are you sure?')" data-theme="b">Clear Totals</button>-->
                     <br />
                     <label for="newTotalXp">New Current XP</label>
