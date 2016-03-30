@@ -9,57 +9,43 @@
         <link href='https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto:400,900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
         <style>
-            body { text-align: center; font-family: 'Roboto', sans-serif; }
-            h1 { color: #D50000; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; }
+            body { text-align: center; font-family: 'Roboto', sans-serif; background-color: #37474F; padding-top: 70px; overflow-y: hidden; height: initial; }
+            h1 { color: #D50000; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; margin-top: 0; }
             .nav_links { margin-right: 50px; color: white; font-size: 30px; }
             .nav_links a { color: white; }
             nav li { margin-top: 10px; }
             ul { display: block; padding: 0; text-align: right; }
             li { list-style-type: none; }
             a { text-decoration: none; }
-            aside { display: inline-block; position: absolute; right: 0; top: 10em; width: 40%; background-color: black; height: 100%; z-index: 1000; display: none; }
             .content_wrap { z-indxe: 500; }
             .controls { float: right; }
             #numValues { height: 50px; width: 100%; font-size: 16px; vertical-align: middle; }
-            #submit { height: 50px; font-family: 'Press Start 2P', sans-serif; font-weight: 900; font-size: 20px; margin-bottom: 20px; padding: 0 20px; }
+            #submit { height: 50px; font-family: 'Press Start 2P', sans-serif; font-weight: 900; font-size: 20px; margin-bottom: 30px; padding: 0 20px; background-color: #D50000; color: white; border-radius: 10px; border: none; }
+            #submit:hover { background-color: #1565c0; color: white; }
             .lastButton { margin-bottom: 30px; }
             .hidden { display: none; }
             .visible { display: block; }
-            #newTotalXp { background: #fff; padding: 10px 0; width: 100%; color: #C30; font-size: 16px; }
-            #nextLevelCalc { margin-top: 20px; }
+            #newTotalXp { background-color: #000; padding: 10px 0; width: 100%; color: #C30; font-size: 16px; margin-top: 10px; }
+            #nextLevelCalc { margin-top: 20px; color: #D50000; }
             .content { text-align: center; font-size: 1.4em; }
             select{ margin: 0 auto 10px auto; }
-            h2 { color:#903; text-align:center; }
+            footer { margin-top: 100px; color: #546E7A; padding-bottom: 10px; }
             /* angular material styles */
             .md-primary { color: white; }
-            md-content { background-color: #f9f9f9; width: 600px; margin: 40px auto; padding: 35px; border: 4px solid #D50000; }
+            md-content { background-color: #f9f9f9; width: 600px; margin: 0 auto; padding: 35px; border: 4px solid #D50000; box-shadow: 10px 10px 10px black; border-radius: 20px; }
             md-input-container { padding: 0; right: 0; }
             .md-button { background-color: #1565C0; }
-            @media (max-width: 640px) { .content { text-align: left; } }
+             @media screen and (max-width: 999px) { body { padding-top: 40px; } md-content { width: 70%; box-shadow: none; } h1 { font-size: 28px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; } }
+             @media screen and (max-height: 500px) { body { overflow-y: scroll; } }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
         <script>
-            var demo = angular.module("demo", ['ngMaterial', 'ngRoute']);
-
-                demo.config(['$routeProvider', function($routeProvider){
-                    $routeProvider.when('/', {
-                        templateUrl: 'index.html',
-                        controller: 'ctrl'
-                    })
-                    .when('/level_info', {
-                        templateUrl: 'level_info.html',
-                        controller: 'ctrl'
-                    })
-                    .otherwise('/error', {
-                        template: '<p>Error - Page Not Found</p>'
-                    });
-                }])
+            var demo = angular.module("demo", ['ngMaterial']);
 
                 demo.controller("ctrl", function($scope){
                     $scope.name = "";
@@ -69,50 +55,36 @@
                     $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
                     $scope.xp = "";
                     $scope.newXp1 = "";
+                    $scope.neededXp = 0;
                     $scope.newXp2 = "";
                     $scope.totalXp = 0;
-                    $scope.visible = "";
-                    $scope.hideElement = function(){
-                        $scope.visible = "";
-                    };
-                    $scope.showElement = function(){
-                        $scope.visible = "visible";
-                    };
+                    $scope.levelMessage = 'ng-hide';
+
                     $scope.submit = function(){
-                        $scope.newXpTotal = Number($scope.newXp1) + Number($scope.newXp2);
+                        $scope.newXpTotal = Number($scope.newXp);
                         $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
                         $scope.nextLevel = Number($scope.level) + 1;
                         $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
-                        console.log($scope.nextLevelValue + " - next level value");
                         $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
                         $scope.nextLevelCalc = function(){
                             $scope.lvThreshold = Number($scope.level) - Number($scope.nextLevel);
                         };
-                        console.log($scope.newXpTotal + " - new xp");
-                        console.log($scope.totalXp + " - total xp");
-                        console.log($scope.neededXp + " - needed xp");
-                        console.log($scope.nextLevel + " - next level");
-                        //$http.put(URL);
+
+                        $scope.levelMessage = 'ng-show';
                         $scope.xp = $scope.totalXp;
                         $scope.newXp = 0;
                     };
+
                 });
         </script>
     </head>
 
     <body>
+
         <md-content>
-            <header data-role="header" data-theme="a">
+            <header>
                 <h1>XP Calculator</h1>
             </header>
-            <aside>
-                <nav>
-                    <ul>
-                        <li><a class="nav_links" href="#home" data-transition="none" data-icon="home">XP</a></li>
-                        <li><a class="nav_links" href="#level" data-transition="none" data-icon="plus">Level Up Info</a></li>
-                    </ul>
-                </nav>
-            </aside>
             <section>
                 <div class="content_wrap">
                 
@@ -128,40 +100,27 @@
                         <label for="currXp">Current XP</label>
                         <input type="number" id="currXp" data-inset="true" ng-model="xp">
                     </md-input-container>
-                    <label for="newXp">Newly Earned XP</label>
-                    <md-button id="numValues" class="md-primary"  data-theme="a" ng-click="hideElement()">Hide Preset Values</md-button>
-                    <md-button id="numValues" class="lastButton" data-theme="b" ng-click="showElement()">Show Preset Values</md-button>
-                    <div id="hiddenDropDown">
-                        <select name="newXp" id="newXp" data-role="none" ng-model="newXp1" class="hidden {{ visible }}">
-                            <option value="100">100</option>
-                            <option value="200">200</option>
-                            <option value="300">300</option>
-                            <option value="400">400</option>
-                            <option value="500">500</option>
-                            <option value="600">600</option>
-                            <option value="700">700</option>
-                            <option value="800">800</option>
-                            <option value="900">900</option>
-                            <option value="1000">1000</option>
-                        </select>
-                    </div>
                     <md-input-container class="md-block">
-                        <input type="number" id="newXp2" data-inset="true" ng-model="newXp2" placeholder="Type here for specific values">
+                        <label for="newXp">Newly Earned XP</label>
+                        <input type="number" id="newXp" data-inset="true" ng-model="newXp">
                     </md-input-container>
                     <button type="submit" value="submit" id="submit" ng-click="submit()">Compute</button>
-                    <!--<button id="clearRuns" onClick="return confirm('Are you sure?')" data-theme="b">Clear Totals</button>-->
                     <br />
                     <label for="newTotalXp">New Current XP</label>
                     <div id="newTotalXp">
                         {{ totalXp }}
                     </div>
                     <br />
+                    <div id="nextLevelCalc">
+                        <p class="{{ levelMessage }}">You are {{ neededXp }}xp away from level {{ nextLevel }}.</p>
+                    </div>
                 </div>
             </section>
+        </md-content> 
             
-            <footer data-role="footer" data-theme="a">
-                <h4>ME Innovation &copy; 2016</h4>
-            </footer>
-        </md-content>
+        <footer>
+            <p>ME Innovation &copy; 2016</p>
+        </footer>
+        
     </body>
 </html>
