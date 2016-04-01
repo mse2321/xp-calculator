@@ -37,39 +37,6 @@
             .md-button { background-color: #1565C0; }
              @media screen and (max-width: 999px) { body { padding-top: 40px; } md-content { width: 70%; box-shadow: none; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; } }
         </style>
-        <script>
-            var demo = angular.module("demo", ['ngMaterial']);
-
-                demo.controller("ctrl", function($scope){
-                    $scope.name = "";
-                    $scope.level = "";
-                    $scope.nextLevel = 0;
-                    $scope.lvThreshold = 0;
-                    $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
-                    $scope.xp = "";
-                    $scope.newXp1 = "";
-                    $scope.neededXp = 0;
-                    $scope.newXp2 = "";
-                    $scope.totalXp = 0;
-                    $scope.levelMessage = 'ng-hide';
-
-                    $scope.submit = function(){
-                        $scope.newXpTotal = Number($scope.newXp);
-                        $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
-                        $scope.nextLevel = Number($scope.level) + 1;
-                        $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
-                        $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
-                        $scope.nextLevelCalc = function(){
-                            $scope.lvThreshold = Number($scope.level) - Number($scope.nextLevel);
-                        };
-
-                        $scope.levelMessage = 'ng-show';
-                        $scope.xp = $scope.totalXp;
-                        $scope.newXp = 0;
-                    };
-
-                });
-        </script>
     </head>
 
     <body>
@@ -114,11 +81,46 @@
         <footer>
             <p>ME Innovation &copy; 2016</p>
         </footer>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+        <script src="files/jquery.min.js"></script>
+        <script src="files/angular.min.js"></script>
+        <script src="files/angular-animate.min.js"></script>
+        <script src="files/angular-aria.min.js"></script>
+        <script src="files/angular-messages.min.js"></script>
+        <script src="files/angular-material.min.js"></script>
+        <script>
+            var demo = angular.module("demo", ['ngMaterial']);
+
+                demo.controller("ctrl", function($scope){
+                    $scope.name = "";
+                    $scope.level = "";
+                    $scope.nextLevel = 0;
+                    $scope.lvThreshold = 0;
+                    $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
+                    $scope.xp = "";
+                    $scope.newXp1 = "";
+                    $scope.neededXp = 0;
+                    $scope.newXp2 = "";
+                    $scope.totalXp = 0;
+                    $scope.levelMessage = 'ng-hide';
+
+                    $scope.submit = function(){
+                        $scope.newXpTotal = Number($scope.newXp);
+                        $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
+                        $scope.nextLevel = Number($scope.level) + 1;
+                        $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
+                        $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
+                        $scope.nextLevelCalc = function(){
+                            $scope.lvThreshold = Number($scope.level) - Number($scope.nextLevel);
+                        };
+
+                        $scope.levelMessage = 'ng-show';
+                        $scope.xp = $scope.totalXp;
+                        $scope.newXp = 0;
+                    };
+
+                });
+        </script>
+        
     </body>
 </html>
