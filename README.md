@@ -7,3 +7,5 @@ In addition, it stores your information throughtout your game for easy, continue
 
 In a future update, I will add the option to store multiple characters and add campaign names to help sort them.
 
+Made with the following: HTML5, CSS3, JavaScript, jQuery Mobile, Angular, Angular-Material, Responsive Web Design
+
