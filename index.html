@@ -23,8 +23,8 @@
         </script>
         <style>
             body { background-color: #37474F; height: initial; }
-            #container { text-align: center; font-family: 'Roboto', sans-serif; padding-top: 70px; }
-            h1 { color: #D50000; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; margin-top: 0; }
+            #container { text-align: center; font-family: 'Roboto', sans-serif; padding-top: 70px; padding-bottom: 20px; }
+            h1 { color: #37474F; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; margin-top: 0; }
             .nav_links { margin-right: 50px; color: white; font-size: 30px; }
             .nav_links a { color: white; }
             nav li { margin-top: 10px; }
@@ -33,6 +33,10 @@
             a { text-decoration: none; }
             .content_wrap { z-indxe: 500; }
             .controls { float: right; }
+            .fa-info-circle { position: absolute; cursor: pointer; top: 20px; right: 20px; display: none; z-index: 1000; color: #90A4AE; font-size: 40px !important; }
+            #instructions { width: 400px; height: 400px; background-color: #455A64; color: #ECEFF1; padding: 20px; position: absolute; right: 35px; bottom: 40px; top: 40px; z-index: 500; display: none; border-radius: 5px; text-align: left; }
+            #instructions ul { text-align: left; padding: 20px; }
+            #instructions li { list-style-type: circle; }
             #numValues { height: 50px; width: 100%; font-size: 16px; vertical-align: middle; }
             #submit { height: 50px; font-family: 'Press Start 2P', sans-serif; font-weight: 900; font-size: 20px; margin-bottom: 30px; padding: 0 20px; background-color: #D50000; color: white; border-radius: 10px; border: none; }
             #submit:hover { background-color: #1565c0; color: white; }
@@ -50,12 +54,17 @@
             md-content { background-color: #f9f9f9; width: 600px; margin: 0 auto; padding: 35px; border: 4px solid #D50000; box-shadow: 10px 10px 10px black; border-radius: 20px; }
             md-input-container { padding: 0; right: 0; }
             .md-button { background-color: #1565C0; }
-             @media screen and (max-width: 999px) { md-content { width: 70%; box-shadow: none; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; } }
+             @media screen and (max-width: 401px) { #container { padding: 20px 0; } md-content { width: 70%; box-shadow: none; } #instructions { width: 70%; height: 370px; right: 30px; top: 30px; }  .fa-info-circle { top: 5%; right: 9.5%; font-size: 30px !important; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; bottom: 10px; } }
+             @media screen and (min-width: 402px) and (max-width: 799px) { #container { padding: 20px 0; } md-content { width: 70%; box-shadow: none; } #instructions { width: 70%; height: 370px; right: 11%; top: 4%; }  .fa-info-circle { top: 5%; right: 13%; font-size: 30px !important; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; bottom: 10px; } }
+             @media screen and (max-height: 399px) { #container { padding: 20px 0; } md-content { width: 70%; box-shadow: none; } #instructions { width: 70%; height: 40%; right: 11.5%; top: 20px; bottom: 0; }  .fa-info-circle { top: 5%; right: 13%; font-size: 30px !important; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; bottom: 10px; } }
         </style>
+        <link rel="stylesheet" href="files/font-awesome.min.css" />
     </head>
 
     <body>
         <div id="container">
+            <i class="fa fa-info-circle" aria-hidden="true" ng-click="showInstructions()"></i>
+
             <md-content>
                 <header>
                     <h1>XP Calculator</h1>
@@ -91,8 +100,19 @@
                         </div>
                     </div>
                 </section>
-            </md-content> 
-                
+            </md-content>
+
+            <aside id="instructions">
+                    <h2>How to use</h2>
+                    <ul>
+                        <li>This is a calculator for table-top role-playing games.</li>
+                        <li>Character Levels go from 1 to 20.</li>
+                        <li>Your current XP should make sense based on the game you are playing.</li>
+                        <li>Your totals will be stored and update as you enter new information throughout your game.</li>
+                        <li>For now you only can use this for one character at a time.</li>
+                    </ul>
+                    <p>Click on or tab the icon to close</p>
+            </aside>
             <footer>
                 <p>ME Innovation &copy; 2016</p>
             </footer>
@@ -108,7 +128,7 @@
 
             demo.controller("ctrl", function($scope){
                         $scope.name = "";
-                        $scope.level = "";
+                        $scope.level = 1;
                         $scope.nextLevel = 0;
                         $scope.lvThreshold = 0;
                         $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
@@ -120,19 +140,34 @@
                 $scope.levelMessage = 'ng-hide';
 
                 $scope.submit = function(){
+
                     $scope.newXpTotal = Number($scope.newXp);
                     $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
                     $scope.nextLevel = Number($scope.level) + 1;
                     $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
                     $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
-                        $scope.nextLevelCalc = function(){
-                            $scope.lvThreshold = Number($scope.level) - Number($scope.nextLevel);
-                        };
-
                     $scope.levelMessage = 'ng-show';
                     $scope.xp = $scope.totalXp;
                     $scope.newXp = 0;
 
+                    $scope.checkErrors($scope.neededXp, $scope.nextLevel);
+
+                };
+
+                $scope.checkErrors = function(neededXp, nextLevel){
+                    if ($scope.nextLevel > 20 || $scope.nextLevel <= 0 ){
+                        alert("Your next level can only be from 1 to 20");
+                         $scope.levelMessage = 'ng-hide';
+                         $scope.totalXp = 0;
+                    } else if ($scope.neededXp < 0  || $scope.neededXp === NaN){
+                        alert("Something went wrong! Please make sure your current XP and character level are correct.");
+                         $scope.levelMessage = 'ng-hide';
+                         $scope.totalXp = 0;
+                    }
+                };
+
+                $scope.showInstructions = function() {
+                    $("#instructions").toggle("slide");
                 };
 
             });
