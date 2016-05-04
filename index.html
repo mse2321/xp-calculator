@@ -8,6 +8,7 @@
         <title>Revyn Tools: XP Calculator</title>
         <!--<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />-->
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+        <link rel="stylesheet" href="files/font-awesome.min.css" />
         <script type="text/javascript">
           WebFontConfig = {
             google: { families: [ 'Press+Start+2P::latin', 'Roboto::latin' ] }
@@ -22,11 +23,11 @@
           })(); 
         </script>
         <style>
-            body { background-color: #37474F; height: initial; opacity: 0; }
-            .loaded { opacity: 1; }
-            .loading { background: url("files/ajax-loader.gif") no-repeat center center; }
-            #container { text-align: center; font-family: 'Roboto', sans-serif; padding-top: 70px; padding-bottom: 20px; }
+            body { background-color: #37474F; }
+            #container { text-align: center; font-family: 'Roboto', sans-serif; padding-top: 70px; padding-bottom: 20px; display: none; -webkit-transition: opacity .6s; -moz-transition: opacity .6s; -o-transition: opacity .6s; transition: opacity .6s; }
             h1 { color: #37474F; font-family: 'Press Start 2P', sans-serif; margin-bottom: 40px; margin-top: 0; }
+            .loading { text-align: center; padding-top: 20%; }
+            .loading img { width: 5%; }
             .nav_links { margin-right: 50px; color: white; font-size: 30px; }
             .nav_links a { color: white; }
             nav li { margin-top: 10px; }
@@ -35,7 +36,7 @@
             a { text-decoration: none; }
             .content_wrap { z-indxe: 500; }
             .controls { float: right; }
-            .fa-info-circle { position: absolute; cursor: pointer; top: 20px; right: 20px; display: none; z-index: 1000; color: #90A4AE; font-size: 40px !important; }
+            .fa-info-circle { position: absolute; cursor: pointer; top: 20px; right: 20px; z-index: 1000; color: #90A4AE; font-size: 40px !important; }
             #instructions { width: 400px; height: 400px; background-color: #455A64; color: #ECEFF1; padding: 20px; position: absolute; right: 35px; bottom: 40px; top: 40px; z-index: 500; display: none; border-radius: 5px; text-align: left; }
             #instructions ul { text-align: left; padding: 20px; }
             #instructions li { list-style-type: circle; }
@@ -60,10 +61,12 @@
              @media screen and (min-width: 402px) and (max-width: 799px) { #container { padding: 20px 0; } md-content { width: 70%; box-shadow: none; } #instructions { width: 70%; height: 370px; right: 11%; top: 4%; }  .fa-info-circle { top: 5%; right: 13%; font-size: 30px !important; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; bottom: 10px; } }
              @media screen and (max-height: 399px) { #container { padding: 20px 0; } md-content { width: 70%; box-shadow: none; } #instructions { width: 70%; height: 40%; right: 11.5%; top: 20px; bottom: 0; }  .fa-info-circle { top: 5%; right: 13%; font-size: 30px !important; } h1 { font-size: 26px; text-align: center; } #submit { width: 100%; padding: 0; margin: 0 auto 30px auto;} footer { margin-top: 20px; bottom: 10px; } }
         </style>
-        <link rel="stylesheet" href="files/font-awesome.min.css" />
     </head>
 
-    <body class="loading" ng-init="pageAnimate()">
+    <body ng-init="pageAnimate()">
+        <div class="loading">
+            <img src="files/rolling.gif" alt=""/>        
+        </div>
         <div id="container">
             <i class="fa fa-info-circle" aria-hidden="true" ng-click="showInstructions()"></i>
 
@@ -130,7 +133,7 @@
 
             demo.controller("ctrl", function($scope){
                         $scope.name = "";
-                        $scope.level = 1;
+                        $scope.level = "";
                         $scope.nextLevel = 0;
                         $scope.lvThreshold = 0;
                         $scope.xpVales = [0,1000,3000,6000,10000,15000,21000,28000,36000,45000,55000,66000,78000,91000,105000,120000,136000,153000,171000,190000];
@@ -174,9 +177,8 @@
 
                 $scope.pageAnimate = function(){
                     $(window).load(function() {
-                        window.setTimeout(function(){
-                            $('body').removeClass("loading").addClass('loaded');
-                        }, 200);
+                        $('#container').show();
+                        $('.loading').hide();
                     });
 
                 };
