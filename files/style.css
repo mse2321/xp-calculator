@@ -6,7 +6,6 @@ body {
       font-family: 'Roboto', sans-serif; 
       padding-top: 70px; 
       padding-bottom: 20px; 
-      display: none; 
       -webkit-transition: opacity .6s; 
       -moz-transition: opacity .6s; 
       -o-transition: opacity .6s; 
@@ -73,7 +72,6 @@ a {
       bottom: 40px; 
       top: 40px; 
       z-index: 500; 
-      display: none; 
       border-radius: 5px; 
       text-align: left;
 }

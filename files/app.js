@@ -11,6 +11,8 @@ demo.controller("ctrl", function($scope){
     $scope.neededXp = 0;
     $scope.totalXp = 0;
     $scope.errorFound = true;
+    $scope.activeInstructions = false;
+    $scope.loaded = false;
 
     $scope.checkErrors = function(){
         if ($scope.name === null || $scope.name === ''){
@@ -51,15 +53,13 @@ demo.controller("ctrl", function($scope){
     };
 
     $scope.showInstructions = function() {
-        $("#instructions").toggle("slide");
+        $scope.activeInstructions = !$scope.activeInstructions;
     };
 
     $scope.pageAnimate = function(){
-        $(window).load(function() {
-            $('#container').show();
-            $('.loading').hide();
-        });
+        $scope.loaded = true;
     };
-    $scope.pageAnimate();
+
+    window.onload = $scope.pageAnimate();
 
 });
