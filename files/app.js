@@ -10,48 +10,44 @@ demo.controller("ctrl", function($scope){
     $scope.newXp = "";
     $scope.neededXp = 0;
     $scope.totalXp = 0;
-    $scope.levelMessage = 'ng-hide';
-    $scope.errorFound = '';
+    $scope.errorFound = true;
+
+    $scope.checkErrors = function(){
+        if ($scope.name === null || $scope.name === ''){
+            alert("Please type in a character name.");
+            $scope.errorFound = true;
+        } else if ($scope.level > 20 || !$scope.level){
+            alert("Please put in an appropriate character level.");
+            $scope.errorFound = true;
+        } else if ($scope.xp <= 0 || !$scope.xp){
+            alert("Please put in an XP value.");
+            $scope.errorFound = true;
+        } else if ($scope.newXp <= 0 || !$scope.newXp){
+            alert("Please put in a newly earned XP value.");
+            $scope.errorFound = true;
+        } else {
+            $scope.errorFound = false;
+            $scope.calculate($scope.errorFound);                            
+        }
+    };
+
+    $scope.calculate = function(errorFound){
+        if($scope.errorFound) {
+            $scope.totalXp = 0;
+            return false; 
+        }
+
+        $scope.newXpTotal = Number($scope.newXp);
+        $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
+        $scope.nextLevel = Number($scope.level) + 1;
+        $scope.nextLevelValue = $scope.xpValues[$scope.level];
+        $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
+        $scope.xp = $scope.totalXp;
+        $scope.newXp = 0;
+    };
 
     $scope.submit = function(){
-        $scope.checkErrors = function(){
-            if ($scope.name === null || $scope.name === ''){
-                alert("Please type in a character name.");
-                $scope.errorFound = true;
-            } else if ($scope.level > 20 || !$scope.level){
-                alert("Please put in an appropriate character level.");
-                $scope.errorFound = true;
-            } else if ($scope.xp <= 0 || !$scope.xp){
-                alert("Please put in an XP value.");
-                $scope.errorFound = true;
-            } else if ($scope.newXp <= 0 || !$scope.newXp){
-                alert("Please put in a newly earned XP value.");
-                $scope.errorFound = true;
-            } else {
-                $scope.errorFound = false;
-                $scope.calculate($scope.errorFound);                            
-            }
-        };
-
         $scope.checkErrors();
-
-        $scope.calculate = function(errorFound){
-            if($scope.errorFound) {
-                $scope.levelMessage = 'ng-hide';
-                $scope.totalXp = 0;
-                return false; 
-            }
-
-            $scope.newXpTotal = Number($scope.newXp);
-            $scope.totalXp = Number($scope.xp) + Number($scope.newXpTotal);
-            $scope.nextLevel = Number($scope.level) + 1;
-            $scope.nextLevelValue = $scope.xpVales[$scope.nextLevel - 1];
-            $scope.neededXp = Number($scope.nextLevelValue) - Number($scope.totalXp);
-            $scope.levelMessage = 'ng-show';
-            $scope.xp = $scope.totalXp;
-            $scope.newXp = 0;
-
-        };
     };
 
     $scope.showInstructions = function() {

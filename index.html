@@ -54,8 +54,8 @@
                             {{ totalXp }}
                         </div>
                         <br />
-                        <div id="nextLevelCalc">
-                            <p class="{{ levelMessage }}">You are&nbsp;&nbsp;{{ neededXp }}xp from level&nbsp;&nbsp;{{ nextLevel }}.</p>
+                        <div id="nextLevelCalc" ng-show="!errorFound">
+                            <p>You are&nbsp;{{ neededXp }}xp from level&nbsp;{{ nextLevel }}.</p>
                         </div>
                     </div>
                 </section>
