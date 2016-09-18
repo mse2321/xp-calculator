@@ -136,10 +136,6 @@ footer {
       margin-top: 100px; 
       color: #546E7A; 
       padding-bottom: 10px; 
-      position: absolute; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
 }
 
 /* angular material styles */
@@ -192,8 +188,7 @@ md-input-container {
             margin: 0 auto 30px auto; 
       } 
       footer { 
-            margin-top: 20px; 
-            bottom: 10px; 
+            margin-top: 20px;
       } 
 }
 
@@ -226,8 +221,7 @@ md-input-container {
             margin: 0 auto 30px auto;
       } 
       footer { 
-            margin-top: 20px; 
-            bottom: 10px; 
+            margin-top: 20px;
       } 
 }
 @media (max-height: 399px) { 
@@ -246,8 +240,8 @@ md-input-container {
             bottom: 0; 
       }  
       .fa-info-circle { 
-            top: 5%; 
-            right: 13%; 
+            top: 10%; 
+            right: 14%; 
             font-size: 30px; 
       } 
       h1 { 
@@ -260,7 +254,6 @@ md-input-container {
             margin: 0 auto 30px auto;
       } 
       footer { 
-            margin-top: 20px; 
-            bottom: 10px; 
+            margin-top: 20px;
       } 
 }
