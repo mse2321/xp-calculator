@@ -7,12 +7,38 @@ const Calculator = () => {
     const [neededXp, setNeededXp] = useState(0);
     const [nextLevel, setNextLevel] = useState(0);
     const [nextLevelXp, setNextLevelXp] = useState(0);
+    const [character, setCharacter] = useState({
+        name: '',
+        level: 0,
+        currentXp: 0,
+        newXp: 0,
+        newTotalXp: 0
+    });
+
+    const levelXpFinder = () => {
+        // takes the current user's xp + 1 and finds the corresponding xp total
+        setNextLevel(character.level + 1);
+        
+        let levelObjectIndex = xpData.indexOf(nextLevel);
+        let startingXp = xpData[levelObjectIndex].startingXP;
+
+        setNextLevelXp(startingXp);
+        return startingXp;
+    }
 
     const handleCalc = () => {
-        // takes all fields and calculates the total xp
-        setTotalXp(100);
+        setCharacter({
+            name: document.getElementById('charName').value,
+            level: document.getElementById('charLevel').value,
+            currentXp: document.getElementById('currXp').value,
+            newXp: document.getElementById('newXp').value,
+            newTotalXp: totalXp
+        });
+
+        setTotalXp(character.currentXp + character.newXp);
+        levelXpFinder()
         setNeededXp(nextLevelXp - totalXp);
-        totalXp >= nextLevelXp && setNextLevel(1);
+        totalXp >= nextLevelXp && setNextLevel(nextLevel + 1);
     }
 
     return (
