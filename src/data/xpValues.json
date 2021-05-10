@@ -1,0 +1,84 @@
+{
+    "xpValues" : [
+        {
+            "level": 1,
+            "startingXP": 0
+        },
+        {
+            "level": 2,
+            "startingXP": 1000
+        },
+        {
+            "level": 3,
+            "startingXP": 3000
+        },
+        {
+            "level": 4,
+            "startingXP": 6000
+        },
+        {
+            "level": 5,
+            "startingXP": 10000
+        },
+        {
+            "level": 6,
+            "startingXP": 15000
+        },
+        {
+            "level": 7,
+            "startingXP": 21000
+        },
+        {
+            "level": 8,
+            "startingXP": 28000
+        },
+        {
+            "level": 9,
+            "startingXP": 36000
+        },
+        {
+            "level": 10,
+            "startingXP": 45000
+        },
+        {
+            "level": 11,
+            "startingXP": 55000
+        },
+        {
+            "level": 12,
+            "startingXP": 66000
+        },
+        {
+            "level": 13,
+            "startingXP": 78000
+        },
+        {
+            "level": 14,
+            "startingXP": 91000
+        },
+        {
+            "level": 15,
+            "startingXP": 105000
+        },
+        {
+            "level": 16,
+            "startingXP": 120000
+        },
+        {
+            "level": 17,
+            "startingXP": 136000
+        },
+        {
+            "level": 18,
+            "startingXP": 153000
+        },
+        {
+            "level": 19,
+            "startingXP": 171000
+        },
+        {
+            "level": 20,
+            "startingXP": 190000
+        }
+    ]
+}
