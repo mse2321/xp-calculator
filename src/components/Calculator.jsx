@@ -7,17 +7,14 @@ const Calculator = () => {
     const [neededXp, setNeededXp] = useState(0);
     const [nextLevel, setNextLevel] = useState(0);
     const [nextLevelXp, setNextLevelXp] = useState(0);
-    const [character, setCharacter] = useState({
-        name: '',
-        level: 0,
-        currentXp: 0,
-        newXp: 0,
-        newTotalXp: 0
-    });
+    const [characterName, setCharacterName] = useState('');
+    const [characterLevel, setCharacterLevel] = useState(0);
+    const [currentXp, setCurrentXp] = useState(0);
+    const [newXp, setNewXp] = useState(0);
 
     const levelXpFinder = () => {
         // takes the current user's xp + 1 and finds the corresponding xp total
-        setNextLevel(character.level + 1);
+        setNextLevel(characterLevel + 1);
         
         let levelObjectIndex = xpData.indexOf(nextLevel);
         let startingXp = xpData[levelObjectIndex].startingXP;
@@ -27,18 +24,16 @@ const Calculator = () => {
     }
 
     const handleCalc = () => {
-        setCharacter({
-            name: document.getElementById('charName').value,
-            level: document.getElementById('charLevel').value,
-            currentXp: document.getElementById('currXp').value,
-            newXp: document.getElementById('newXp').value,
-            newTotalXp: totalXp
-        });
+        setCharacterName(document.getElementById('charName').value);
+        setCharacterLevel(document.getElementById('charLevel').value);
+        setCurrentXp(document.getElementById('currXp').value);
+        setNewXp(document.getElementById('newXp').value);
 
-        setTotalXp(character.currentXp + character.newXp);
+        setTotalXp(currentXp + newXp);
         levelXpFinder()
         setNeededXp(nextLevelXp - totalXp);
         totalXp >= nextLevelXp && setNextLevel(nextLevel + 1);
+        document.getElementById('charName').value = characterName;
     }
 
     return (
