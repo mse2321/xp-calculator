@@ -1,5 +1,7 @@
 footer { 
-	margin-top: 100px; 
+	margin-top: $base-unit * 10; 
 	color: #546E7A; 
-	padding-bottom: 10px; 
+	padding-bottom: $base-unit; 
+
+	a { margin-left: $base-unit * 0.3; }
 }

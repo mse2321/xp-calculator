@@ -2,8 +2,10 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import Calculator from './components/Calculator';
-import { Container, Grid } from 'material-ui'
-import './styles.scss';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
+import './scss/styles.scss';
 
 const App = () => {
   return (

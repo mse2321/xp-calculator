@@ -1,15 +1,24 @@
+import InfoIcon from '@material-ui/icons/Info';
 
 const Sidebar = () => {
+
+  const showInstructions = () => {
+    console.log('Im here');
+  }
+
   return (
-    <aside id="instructions">
-        <h2>How to use</h2>
-        <ul>
-            <li>This is a calculator for table-top role-playing games.</li>
-            <li>Character Levels go from 1 to 20.</li>
-            <li>Your current XP should make sense based on the game you are playing.</li>
-            <li>Your totals will be stored and update as you enter new information throughout your game.</li>
-            <li>For now you only can use this for one character at a time.</li>
-        </ul>
+    <aside>
+        <InfoIcon type="button" onClick={() => showInstructions()} />
+        <div >
+          <h2>How to use</h2>
+          <ul id="instructions">
+              <li>This is a calculator for table-top role-playing games.</li>
+              <li>Character Levels go from 1 to 20.</li>
+              <li>Your current XP should make sense based on the game you are playing.</li>
+              <li>Your totals will be stored and update as you enter new information throughout your game.</li>
+              <li>For now you only can use this for one character at a time.</li>
+          </ul>
+        </div>
     </aside>
   );
 }
