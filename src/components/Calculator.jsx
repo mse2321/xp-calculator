@@ -1,6 +1,6 @@
 import { useState } from 'React';
 import xpData from '../data/xpValues.json';
-import { Button } from 'react-bootstrap';
+import { Button } from 'material-ui';
 
 const Calculator = () => {
     const [totalXp, setTotalXp] = useState(0);
