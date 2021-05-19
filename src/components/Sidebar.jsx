@@ -1,15 +1,9 @@
-import InfoIcon from '@material-ui/icons/Info';
 
 const Sidebar = () => {
 
-  const showInstructions = () => {
-    console.log('Im here');
-  }
-
   return (
     <aside>
-        <InfoIcon type="button" onClick={() => showInstructions()} />
-        <div >
+        <div>
           <h2>How to use</h2>
           <ul id="instructions">
               <li>This is a calculator for table-top role-playing games.</li>
