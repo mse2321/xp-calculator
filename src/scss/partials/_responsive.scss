@@ -1,0 +1,16 @@
+@media (max-width: 1200px) {
+    #content_wrap   { width: 45%; }
+}
+
+@media (max-width: 799px) {
+    h1              { font-size: $base-font-unit * 2; }
+
+    #content_wrap   { width: 90%; }
+
+    #submit, #restart { 
+        width: 100%;
+        margin: $base-unit * 0.8 0; 
+        padding: $base-unit 0; 
+        font-size: $base-font-unit * 1.2;
+    }
+}

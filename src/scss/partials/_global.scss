@@ -9,7 +9,7 @@ a, a:active, a:focus, a:hover { text-decoration: none; }
 body { 
 	background-color: #37474F; 
 	font-family: $font-family-body; 
-	color: $white; 
+	color: white; 
 	margin: 0; 
 	font-size: $font-size-body;
 	z-index: 0; 
@@ -17,46 +17,25 @@ body {
 }
 
 h1 { 
-	color: #37474F; 
-	font-family: 'Press Start 2P', sans-serif; 
-	margin-bottom: 40px; 
+	font-family: $heading-font-family;
+	margin-bottom: $base-unit * 4; 
 	margin-top: 0; 
+	text-align: center;
+	font-size: $base-unit * 3;
 }
 
-.calculator_container {
-	padding-top: $base-unit * 4;
+h2 {
+	color: #37474F; 
+	font-size: $base-font-unit * 1.5;
 }
 
-
-.loading { 
-	text-align: center; 
-	padding-top: 20%; 
-}
-.loading img {
-	width: 5%; 
-}
-.nav_links { 
-	margin-right: 50px; 
-	color: white; 
-	font-size: 30px; 
-}
-.nav_links a { 
-	color: white; 
-}
-nav li { 
-	margin-top: 10px; 
-}
-ul { 
-	padding: 0; 
-	text-align: right; 
-}
-li { 
-	list-style-type: none; 
-}
 a { 
 	text-decoration: none; 
 	color: #78909C;
+
+	&:hover { color: white; }
 }
+
 #content_wrap { 
 	z-index: 500; 
 	text-align: center; 
@@ -67,99 +46,17 @@ a {
 	transition: opacity .6s; 
 	background-color: white;
 	padding: $base-unit * 2;
-	width: 50%;
-}
-.hidden { 
-	visibility: hidden; 
-}
-.visible { 
-	visibility: visible; 
+	width: 30%;
+	border-radius: $base-unit * 2;
+	margin: 0 auto;
 }
 
-@media (max-width: 401px) { 
-	#container { 
-		  padding: 20px 0; 
-	} 
-	#instructions { 
-		  width: 70%; 
-		  height: 370px; 
-		  right: 30px; 
-		  top: 30px; 
-		  padding-bottom: 50px; 
-	}
-	.fa-info-circle { 
-		  top: 6.5%; 
-		  right: 9.5%; 
-		  font-size: 30px; 
-	} 
-	h1 { 
-		  font-size: 20px; 
-		  text-align: center; 
-	} 
-	#submit { 
-		  width: 100%; 
-		  padding: 0; 
-		  margin: 0 auto 30px auto; 
-	} 
-	footer { 
-		  margin-top: 20px;
-	} 
-}
+footer { 
+	margin-top: $base-unit * 10; 
+	color: #546E7A; 
+	padding-bottom: $base-unit; 
+	text-align: center;
+	font-size: $base-font-unit * 1.2;
 
-@media (min-width: 402px) and (max-width: 799px) { 
-	#container { 
-		  padding: 20px 0; 
-	} 
-	#instructions { 
-		  width: 70%; 
-		  height: 370px; 
-		  right: 11%; 
-		  top: 4%; 
-	}  
-	.fa-info-circle { 
-		  top: 6%; 
-		  right: 11%; 
-		  font-size: 30px; 
-	} 
-	h1 { 
-		  font-size: 20px; 
-		  text-align: center; 
-	} 
-	#submit { 
-		  width: 100%; 
-		  padding: 0; 
-		  margin: 0 auto 30px auto;
-	} 
-	footer { 
-		  margin-top: 20px;
-	} 
-}
-@media (max-height: 449px) { 
-	#container { 
-		  padding: 20px 0; 
-	} 
-	#instructions { 
-		  width: 70%; 
-		  height: 40%; 
-		  right: 11.5%; 
-		  top: 20px; 
-		  bottom: 0; 
-	}  
-	.fa-info-circle { 
-		  top: 8%; 
-		  right: 12%; 
-		  font-size: 30px; 
-	} 
-	h1 { 
-		  font-size: 20px; 
-		  text-align: center; 
-	} 
-	#submit { 
-		  width: 100%; 
-		  padding: 0; 
-		  margin: 0 auto 30px auto;
-	} 
-	footer { 
-		  margin-top: 20px;
-	} 
+	a { margin-left: $base-unit * 0.3; }
 }
