@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
-    "node-sass": "^6.0.0",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^5.2.0",
     "sass-loader": "^11.1.0"
   }
