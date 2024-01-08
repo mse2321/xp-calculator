@@ -1,8 +1,9 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Calculator from './components/Calculator';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import './scss/styles.scss';
 
 const App = () => {
 
