@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import App from '../App';
 
 export default function Home() {
@@ -13,13 +12,6 @@ export default function Home() {
       </Head>
       <main>
       <App />
-        <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                width={100}
-                height={24}
-                priority
-              />
       </main>
     </>
   )
