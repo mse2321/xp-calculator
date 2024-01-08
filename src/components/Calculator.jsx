@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data/xpValues.json';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const Calculator = () => {
     const [totalXp, setTotalXp] = useState(0);
